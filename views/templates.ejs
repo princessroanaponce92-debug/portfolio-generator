@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+<h1>Choose a Template</h1>
+<p class="muted">Pick a design for <strong><%= p.full_name %></strong>'s portfolio.</p>
+<div class="template-grid">
+<% [[1,'Simple','Clean and professional single-column layout.'],
+    [2,'Modern','Cards, sections and a bold gradient header.'],
+    [3,'Creative','Sidebar profile with a timeline-style layout.']].forEach(([n, name, desc]) => { %>
+  <div class="tcard <%= p.template === n ? 'active' : '' %>">
+    <div class="frame">
+      <iframe src="/portfolio/<%= p.id %>/preview?t=<%= n %>&embed=1" loading="lazy" tabindex="-1"></iframe>
+    </div>
+    <h3>Template <%= n %> – <%= name %></h3>
+    <p class="muted"><%= desc %></p>
+    <div class="actions">
+      <a class="btn btn-outline" target="_blank" href="/portfolio/<%= p.id %>/preview?t=<%= n %>">Preview</a>
+      <form method="POST" action="/portfolio/<%= p.id %>/template">
+        <input type="hidden" name="template" value="<%= n %>">
+        <button class="btn"><%= p.template === n ? 'Selected ✓' : 'Select' %></button>
+      </form>
+    </div>
+  </div>
+<% }) %>
+</div>
+<%- include('partials/footer') %>

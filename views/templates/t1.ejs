@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= p.full_name %> | Portfolio</title>
+  <link rel="stylesheet" href="/css/t1.css">
+</head>
+<body>
+<%- include('../partials/toolbar') %>
+<div class="wrap">
+  <header>
+    <% if (p.photo) { %><img src="<%= p.photo %>" alt="<%= p.full_name %>"><% } %>
+    <h1><%= p.full_name %></h1>
+    <p class="contact"><%= [p.email, p.phone, p.address].filter(Boolean).join('  •  ') %></p>
+  </header>
+
+  <% if (p.about) { %><section><h2>About Me</h2><p><%= p.about %></p></section><% } %>
+
+  <% if (p.education.length) { %><section><h2>Education</h2>
+    <% p.education.forEach(e => { %>
+      <div class="item"><strong><%= e.school %></strong><span><%= e.degree %> <em><%= e.years %></em></span></div>
+    <% }) %></section><% } %>
+
+  <% if (p.skills.length) { %><section><h2>Skills</h2>
+    <ul class="tags"><% p.skills.forEach(s => { %><li><%= s.name %></li><% }) %></ul></section><% } %>
+
+  <% if (p.projects.length) { %><section><h2>Projects</h2>
+    <% p.projects.forEach(x => { %>
+      <div class="item"><strong><%= x.title %></strong><span><%= x.description %></span>
+      <% if (x.link) { %><a href="<%= x.link %>" target="_blank">View project →</a><% } %></div>
+    <% }) %></section><% } %>
+
+  <% if (p.experience.length) { %><section><h2>Work Experience</h2>
+    <% p.experience.forEach(x => { %>
+      <div class="item"><strong><%= x.position %> – <%= x.company %></strong>
+      <em><%= x.years %></em><span><%= x.description %></span></div>
+    <% }) %></section><% } %>
+
+  <% if (p.social_links.length) { %><section><h2>Connect</h2>
+    <p class="links"><% p.social_links.forEach(l => { %><a href="<%= l.url %>" target="_blank"><%= l.label %></a><% }) %></p></section><% } %>
+</div>
+</body>
+</html>

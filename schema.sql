@@ -1,0 +1,55 @@
+CREATE TABLE IF NOT EXISTS portfolios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  full_name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  phone VARCHAR(40),
+  address VARCHAR(255),
+  about TEXT,
+  photo MEDIUMTEXT,
+  template TINYINT NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS education (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  portfolio_id INT NOT NULL,
+  school VARCHAR(150) NOT NULL,
+  degree VARCHAR(150),
+  years VARCHAR(50),
+  FOREIGN KEY (portfolio_id) REFERENCES portfolios(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS skills (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  portfolio_id INT NOT NULL,
+  name VARCHAR(80) NOT NULL,
+  FOREIGN KEY (portfolio_id) REFERENCES portfolios(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS projects (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  portfolio_id INT NOT NULL,
+  title VARCHAR(150) NOT NULL,
+  description TEXT,
+  link VARCHAR(255),
+  FOREIGN KEY (portfolio_id) REFERENCES portfolios(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS experience (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  portfolio_id INT NOT NULL,
+  company VARCHAR(150) NOT NULL,
+  position VARCHAR(150),
+  years VARCHAR(50),
+  description TEXT,
+  FOREIGN KEY (portfolio_id) REFERENCES portfolios(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS social_links (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  portfolio_id INT NOT NULL,
+  label VARCHAR(60) NOT NULL,
+  url VARCHAR(255) NOT NULL,
+  FOREIGN KEY (portfolio_id) REFERENCES portfolios(id) ON DELETE CASCADE
+);

@@ -1,0 +1,19 @@
+<% if (!embed) { %>
+<style>
+  .tb{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#4c1d95;padding:8px 16px;border-radius:999px;display:flex;gap:14px;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:99;font:14px Arial,sans-serif;flex-wrap:wrap;justify-content:center}
+  .tb a,.tb button{color:#fff;text-decoration:none;background:none;border:0;cursor:pointer;font:inherit}
+  .tb .go{background:#a78bfa;color:#1f1537;padding:4px 12px;border-radius:999px;font-weight:bold}
+  @media print{.tb{display:none}}
+</style>
+<div class="tb">
+  <a href="/manage">⬅ Manage</a>
+  <a href="/portfolio/<%= p.id %>/edit">✏ Edit</a>
+  <a href="/portfolio/<%= p.id %>/templates">🎨 Templates</a>
+  <% if (previewing) { %>
+    <form method="POST" action="/portfolio/<%= p.id %>/template" style="margin:0">
+      <input type="hidden" name="template" value="<%= t %>">
+      <button class="go">Use this template</button>
+    </form>
+  <% } %>
+</div>
+<% } %>

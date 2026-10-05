@@ -1,0 +1,20 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',Arial,sans-serif;background:#f5f0ff;color:#1f1537;padding-bottom:90px}
+.hero{background:linear-gradient(135deg,#4c1d95,#7c3aed,#c084fc);color:#fff;text-align:center;padding:60px 20px 80px;border-radius:0 0 40px 40px}
+.hero img{width:140px;height:140px;border-radius:24px;object-fit:cover;border:5px solid rgba(255,255,255,.5);margin-bottom:14px}
+.hero h1{font-size:2.5rem}
+.hero p{max-width:620px;margin:10px auto 18px;opacity:.92}
+.chips span{display:inline-block;background:rgba(255,255,255,.2);padding:5px 14px;border-radius:999px;margin:4px;font-size:.88rem}
+.grid{max-width:1000px;margin:-40px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.full{grid-column:1/-1}
+.card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(109,40,217,.15)}
+.card h2,h2.big{color:#6d28d9;margin-bottom:12px;font-size:1.15rem}
+h2.big{font-size:1.4rem;margin-top:10px}
+.tags span{display:inline-block;background:#ede9fe;color:#5b21b6;padding:5px 16px;border-radius:999px;margin:4px;font-weight:600;font-size:.88rem}
+.mini{margin-bottom:14px;padding-left:12px;border-left:4px solid #a78bfa}
+.mini small{color:#6b6280}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card a{color:#6d28d9;font-weight:600;text-decoration:none}
+.center{text-align:center}
+.pill{display:inline-block;background:#6d28d9;color:#fff!important;padding:8px 22px;border-radius:999px;margin:4px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.8rem}}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= p.full_name %> | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/t2.css">
+</head>
+<body>
+<%- include('../partials/toolbar') %>
+<header class="hero">
+  <% if (p.photo) { %><img src="<%= p.photo %>" alt="<%= p.full_name %>"><% } %>
+  <h1><%= p.full_name %></h1>
+  <p><%= p.about %></p>
+  <div class="chips">
+    <% if (p.email) { %><span>✉ <%= p.email %></span><% } %>
+    <% if (p.phone) { %><span>📞 <%= p.phone %></span><% } %>
+    <% if (p.address) { %><span>📍 <%= p.address %></span><% } %>
+  </div>
+</header>
+
+<main class="grid">
+  <% if (p.skills.length) { %><section class="card full"><h2>Skills</h2>
+    <div class="tags"><% p.skills.forEach(s => { %><span><%= s.name %></span><% }) %></div></section><% } %>
+
+  <% if (p.education.length) { %><section class="card"><h2>🎓 Education</h2>
+    <% p.education.forEach(e => { %><div class="mini"><h3><%= e.school %></h3><p><%= e.degree %></p><small><%= e.years %></small></div><% }) %></section><% } %>
+
+  <% if (p.experience.length) { %><section class="card"><h2>💼 Experience</h2>
+    <% p.experience.forEach(x => { %><div class="mini"><h3><%= x.position %></h3><p><%= x.company %> · <%= x.years %></p><small><%= x.description %></small></div><% }) %></section><% } %>
+
+  <% if (p.projects.length) { %><section class="full"><h2 class="big">🚀 Projects</h2>
+    <div class="cards"><% p.projects.forEach(x => { %>
+      <article class="card"><h3><%= x.title %></h3><p><%= x.description %></p>
+      <% if (x.link) { %><a href="<%= x.link %>" target="_blank">Open project →</a><% } %></article>
+    <% }) %></div></section><% } %>
+
+  <% if (p.social_links.length) { %><section class="card full center"><h2>Let's connect</h2>
+    <% p.social_links.forEach(l => { %><a class="pill" href="<%= l.url %>" target="_blank"><%= l.label %></a><% }) %></section><% } %>
+</main>
+</body>
+</html>

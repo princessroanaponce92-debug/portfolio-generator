@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+<div class="page-head">
+  <h1>Manage Portfolios</h1>
+  <a class="btn" href="/create">+ New Portfolio</a>
+</div>
+<% if (!list.length) { %>
+  <div class="card-box empty">No portfolios yet. <a href="/create">Create your first one!</a></div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Name</th><th>Email</th><th>Template</th><th>Created</th><th>Actions</th></tr></thead>
+    <tbody>
+    <% list.forEach(r => { %>
+      <tr>
+        <td><%= r.full_name %></td>
+        <td><%= r.email %></td>
+        <td>Template <%= r.template %></td>
+        <td><%= new Date(r.created_at).toLocaleDateString() %></td>
+        <td class="row-actions">
+          <a class="btn btn-sm" href="/portfolio/<%= r.id %>/preview">View</a>
+          <a class="btn btn-sm btn-outline" href="/portfolio/<%= r.id %>/edit">Edit</a>
+          <a class="btn btn-sm btn-outline" href="/portfolio/<%= r.id %>/templates">Template</a>
+          <form method="POST" action="/portfolio/<%= r.id %>/delete"
+                onsubmit="return confirm('Delete this portfolio permanently?')">
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>
+<%- include('partials/footer') %>

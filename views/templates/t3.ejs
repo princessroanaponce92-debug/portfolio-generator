@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= p.full_name %> | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/t3.css">
+</head>
+<body>
+<%- include('../partials/toolbar') %>
+<div class="layout">
+  <aside>
+    <% if (p.photo) { %><img src="<%= p.photo %>" alt="<%= p.full_name %>"><% } %>
+    <h1><%= p.full_name %></h1>
+    <div class="contact">
+      <% if (p.email) { %><p>✉ <%= p.email %></p><% } %>
+      <% if (p.phone) { %><p>📞 <%= p.phone %></p><% } %>
+      <% if (p.address) { %><p>📍 <%= p.address %></p><% } %>
+    </div>
+    <% if (p.skills.length) { %><h3>Skills</h3>
+      <ul><% p.skills.forEach(s => { %><li><%= s.name %></li><% }) %></ul><% } %>
+    <% if (p.social_links.length) { %><h3>Find me</h3>
+      <% p.social_links.forEach(l => { %><a href="<%= l.url %>" target="_blank">↗ <%= l.label %></a><% }) %><% } %>
+  </aside>
+
+  <section class="content">
+    <% if (p.about) { %><div class="quote"><%= p.about %></div><% } %>
+
+    <% if (p.experience.length) { %><h2>Experience</h2><div class="timeline">
+      <% p.experience.forEach(x => { %><div class="t-item"><b><%= x.years %></b>
+        <h4><%= x.position %> @ <%= x.company %></h4><p><%= x.description %></p></div><% }) %></div><% } %>
+
+    <% if (p.education.length) { %><h2>Education</h2><div class="timeline">
+      <% p.education.forEach(e => { %><div class="t-item"><b><%= e.years %></b>
+        <h4><%= e.school %></h4><p><%= e.degree %></p></div><% }) %></div><% } %>
+
+    <% if (p.projects.length) { %><h2>Projects</h2><div class="blocks">
+      <% p.projects.forEach((x, i) => { %><div class="block b<%= i % 3 %>"><h4><%= x.title %></h4><p><%= x.description %></p>
+        <% if (x.link) { %><a href="<%= x.link %>" target="_blank">Visit ↗</a><% } %></div><% }) %></div><% } %>
+  </section>
+</div>
+</body>
+</html>

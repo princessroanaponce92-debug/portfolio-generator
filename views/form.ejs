@@ -1,0 +1,84 @@
+<%- include('partials/header') %>
+<% const e = p || {};
+   const rowsOf = a => (a && a.length ? a : [{}]); %>
+<h1><%= p ? 'Edit Portfolio' : 'Create Portfolio' %></h1>
+
+<form class="card-box" method="POST" enctype="multipart/form-data"
+      action="<%= p ? '/portfolio/' + p.id + '/update' : '/portfolio/save' %>">
+
+  <h2>Personal Information</h2>
+  <div class="grid-2">
+    <div><label>Full Name *</label><input name="full_name" required value="<%= e.full_name || '' %>"></div>
+    <div><label>Email *</label><input type="email" name="email" required value="<%= e.email || '' %>"></div>
+    <div><label>Contact Number</label><input name="phone" value="<%= e.phone || '' %>"></div>
+    <div><label>Address</label><input name="address" value="<%= e.address || '' %>"></div>
+  </div>
+  <label>Profile Picture (max 1MB)</label>
+  <input type="file" name="photo" accept="image/*">
+  <% if (e.photo) { %><img class="thumb" src="<%= e.photo %>" alt="Current photo"><% } %>
+  <label>About Me</label>
+  <textarea name="about" rows="4"><%= e.about || '' %></textarea>
+
+  <h2>Education</h2>
+  <div id="edu">
+    <% rowsOf(e.education).forEach(x => { %>
+    <div class="row-item">
+      <input name="edu_school" placeholder="School / University" value="<%= x.school || '' %>">
+      <input name="edu_degree" placeholder="Degree / Course" value="<%= x.degree || '' %>">
+      <input name="edu_years" placeholder="Years (2022 - 2026)" value="<%= x.years || '' %>">
+      <button type="button" class="btn-x" onclick="removeRow(this)">✕</button>
+    </div>
+    <% }) %>
+  </div>
+  <button type="button" class="btn btn-outline" onclick="addRow('edu')">+ Add Education</button>
+
+  <h2>Skills</h2>
+  <input name="skills" placeholder="Separate with commas: HTML, CSS, JavaScript, MySQL"
+         value="<%= (e.skills || []).map(s => s.name).join(', ') %>">
+
+  <h2>Projects</h2>
+  <div id="proj">
+    <% rowsOf(e.projects).forEach(x => { %>
+    <div class="row-item">
+      <input name="proj_title" placeholder="Project title" value="<%= x.title || '' %>">
+      <textarea name="proj_desc" rows="2" placeholder="Short description"><%= x.description || '' %></textarea>
+      <input name="proj_link" placeholder="Project link (optional)" value="<%= x.link || '' %>">
+      <button type="button" class="btn-x" onclick="removeRow(this)">✕</button>
+    </div>
+    <% }) %>
+  </div>
+  <button type="button" class="btn btn-outline" onclick="addRow('proj')">+ Add Project</button>
+
+  <h2>Work Experience</h2>
+  <div id="exp">
+    <% rowsOf(e.experience).forEach(x => { %>
+    <div class="row-item">
+      <input name="exp_company" placeholder="Company" value="<%= x.company || '' %>">
+      <input name="exp_position" placeholder="Position" value="<%= x.position || '' %>">
+      <input name="exp_years" placeholder="Years" value="<%= x.years || '' %>">
+      <textarea name="exp_desc" rows="2" placeholder="What you did"><%= x.description || '' %></textarea>
+      <button type="button" class="btn-x" onclick="removeRow(this)">✕</button>
+    </div>
+    <% }) %>
+  </div>
+  <button type="button" class="btn btn-outline" onclick="addRow('exp')">+ Add Experience</button>
+
+  <h2>Social Media / Website Links</h2>
+  <div id="links">
+    <% rowsOf(e.social_links).forEach(x => { %>
+    <div class="row-item">
+      <input name="link_label" placeholder="Label (LinkedIn, GitHub...)" value="<%= x.label || '' %>">
+      <input name="link_url" placeholder="https://..." value="<%= x.url || '' %>">
+      <button type="button" class="btn-x" onclick="removeRow(this)">✕</button>
+    </div>
+    <% }) %>
+  </div>
+  <button type="button" class="btn btn-outline" onclick="addRow('links')">+ Add Link</button>
+
+  <div class="form-actions">
+    <button class="btn btn-big"><%= p ? 'Save Changes' : 'Save & Choose Template' %></button>
+    <a class="btn btn-outline btn-big" href="<%= p ? '/manage' : '/' %>">Cancel</a>
+  </div>
+</form>
+<script src="/js/form.js"></script>
+<%- include('partials/footer') %>

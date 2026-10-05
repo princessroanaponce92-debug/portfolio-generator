@@ -1,0 +1,56 @@
+:root{--p:#6d28d9;--p-dark:#4c1d95;--p-light:#ede9fe;--text:#1f1537;--muted:#6b6280;--bg:#faf8ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--p)}
+.nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;background:linear-gradient(90deg,var(--p-dark),var(--p));padding:14px 6%}
+.nav a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600}
+.nav .brand{margin:0;font-size:1.3rem}
+.container{max-width:1000px;margin:30px auto;padding:0 20px;min-height:70vh}
+.footer{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}
+h1{color:var(--p-dark);margin-bottom:10px}
+h2{color:var(--p);margin:26px 0 10px;font-size:1.15rem;border-bottom:2px solid var(--p-light);padding-bottom:4px}
+.muted{color:var(--muted)}
+
+.btn{display:inline-block;background:var(--p);color:#fff;border:2px solid var(--p);padding:9px 20px;border-radius:10px;font:600 .95rem 'Poppins',Arial,sans-serif;text-decoration:none;cursor:pointer;transition:.2s}
+.btn:hover{background:var(--p-dark);border-color:var(--p-dark)}
+.btn-outline{background:#fff;color:var(--p)}
+.btn-outline:hover{background:var(--p-light);color:var(--p-dark)}
+.btn-danger{background:#dc2626;border-color:#dc2626}
+.btn-danger:hover{background:#b91c1c;border-color:#b91c1c}
+.btn-big{padding:12px 28px;font-size:1.05rem;margin:6px}
+.btn-sm{padding:4px 12px;font-size:.8rem}
+
+.hero{text-align:center;padding:70px 20px;background:linear-gradient(135deg,var(--p-light),#fff);border-radius:20px}
+.hero h1{font-size:2.4rem}
+.hero p{max-width:600px;margin:12px auto 26px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:30px}
+.step{background:#fff;border-radius:14px;padding:22px;text-align:center;box-shadow:0 4px 14px rgba(109,40,217,.12)}
+.step span{display:inline-block;width:38px;height:38px;line-height:38px;border-radius:50%;background:var(--p);color:#fff;font-weight:700}
+
+.card-box{background:#fff;border-radius:16px;padding:28px;box-shadow:0 4px 18px rgba(109,40,217,.12)}
+label{display:block;font-weight:600;margin:14px 0 4px;font-size:.9rem}
+input,textarea{width:100%;padding:10px 12px;border:1.5px solid #d8cff0;border-radius:8px;font:inherit}
+input:focus,textarea:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px var(--p-light)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.row-item{display:grid;gap:8px;padding:14px;margin-bottom:10px;background:var(--bg);border:1px dashed #cdbff0;border-radius:10px;position:relative}
+.btn-x{position:absolute;top:6px;right:8px;background:none;border:0;color:#dc2626;font-size:1.1rem;cursor:pointer}
+.thumb{width:90px;height:90px;border-radius:50%;object-fit:cover;margin-top:8px;border:3px solid var(--p-light)}
+.form-actions{margin-top:30px;text-align:center}
+
+.template-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:20px}
+.tcard{background:#fff;border-radius:16px;padding:16px;border:3px solid transparent;box-shadow:0 4px 18px rgba(109,40,217,.12)}
+.tcard.active{border-color:var(--p)}
+.tcard h3{margin-top:12px;color:var(--p-dark)}
+.frame{height:230px;overflow:hidden;border-radius:10px;border:1px solid #e5defa}
+.frame iframe{width:1100px;height:770px;border:0;transform:scale(.3);transform-origin:0 0;pointer-events:none}
+.actions{display:flex;gap:10px;margin-top:12px}
+
+.page-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.table-wrap{overflow-x:auto;background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(109,40,217,.12)}
+table{width:100%;border-collapse:collapse;min-width:680px}
+th{background:var(--p);color:#fff;text-align:left;padding:12px}
+td{padding:12px;border-bottom:1px solid #eee}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.empty{text-align:center}
+
+@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.7rem}.nav a{margin-left:12px}}
