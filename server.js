@@ -4,11 +4,18 @@ const multer = require('multer');
 const path = require('path');
 const db = require('./db');
 
+// ===== Change this number to change the photo size limit everywhere =====
+const MAX_MB = 5;
+
 const app = express();
-const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 1024 * 1024 } });
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: MAX_MB * 1024 * 1024 }
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.locals.maxMB = MAX_MB;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
@@ -128,11 +135,21 @@ app.get('/portfolio/:id/edit', wrap(async (req, res) => {
 
 app.post('/portfolio/:id/update', upload.single('photo'), wrap(async (req, res) => {
   const b = req.body;
+  const newPhoto = toDataUrl(req.file);
+  const removePhoto = b.remove_photo === '1';
+
+  let setSql = 'full_name=?, email=?, phone=?, address=?, about=?';
+  const vals = [b.full_name, b.email, b.phone, b.address, b.about];
+
+  if (newPhoto) {               // a new photo replaces the old one
+    setSql += ', photo=?';
+    vals.push(newPhoto);
+  } else if (removePhoto) {     // user clicked "Remove photo"
+    setSql += ', photo=NULL';
+  }                             // otherwise the current photo is kept
+
   await tx(async conn => {
-    await conn.query(
-      'UPDATE portfolios SET full_name=?, email=?, phone=?, address=?, about=?, photo=COALESCE(?, photo) WHERE id=?',
-      [b.full_name, b.email, b.phone, b.address, b.about, toDataUrl(req.file), req.params.id]
-    );
+    await conn.query(`UPDATE portfolios SET ${setSql} WHERE id=?`, [...vals, req.params.id]);
     await saveChildren(conn, req.params.id, b);
   });
   res.redirect(`/portfolio/${req.params.id}/preview`);
@@ -147,7 +164,9 @@ app.post('/portfolio/:id/delete', wrap(async (req, res) => {
 // ERRORS
 app.use((err, req, res, next) => {
   console.error(err);
-  const msg = err.code === 'LIMIT_FILE_SIZE' ? 'Profile picture must be under 1MB.' : 'Something went wrong.';
+  const msg = err.code === 'LIMIT_FILE_SIZE'
+    ? `Profile picture must be ${MAX_MB}MB or smaller.`
+    : 'Something went wrong.';
   res.status(500).send(`${msg} <a href="javascript:history.back()">Go back</a>`);
 });
 

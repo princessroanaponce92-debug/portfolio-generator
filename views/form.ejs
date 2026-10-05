@@ -13,9 +13,18 @@
     <div><label>Contact Number</label><input name="phone" value="<%= e.phone || '' %>"></div>
     <div><label>Address</label><input name="address" value="<%= e.address || '' %>"></div>
   </div>
-  <label>Profile Picture (max 1MB)</label>
-  <input type="file" name="photo" accept="image/*">
-  <% if (e.photo) { %><img class="thumb" src="<%= e.photo %>" alt="Current photo"><% } %>
+
+  <label>Profile Picture (JPG, PNG or WEBP, max <%= maxMB %>MB)</label>
+  <input type="file" id="photo" name="photo" accept="image/*" data-max-mb="<%= maxMB %>">
+  <div class="photo-box">
+    <img id="photoPreview" class="thumb" alt="Profile preview"
+         src="<%= e.photo || '' %>" style="<%= e.photo ? '' : 'display:none' %>">
+    <button type="button" id="removePhotoBtn" class="btn btn-danger btn-sm"
+            style="<%= e.photo ? '' : 'display:none' %>">Remove photo</button>
+  </div>
+  <input type="hidden" name="remove_photo" id="removePhoto" value="0">
+  <p class="muted" id="photoMsg"></p>
+
   <label>About Me</label>
   <textarea name="about" rows="4"><%= e.about || '' %></textarea>
 

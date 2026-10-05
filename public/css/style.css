@@ -54,3 +54,6 @@ td{padding:12px;border-bottom:1px solid #eee}
 .empty{text-align:center}
 
 @media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.7rem}.nav a{margin-left:12px}}
+
+.photo-box{display:flex;align-items:center;gap:14px;margin-top:8px;flex-wrap:wrap}
+.photo-box .thumb{margin-top:0}
