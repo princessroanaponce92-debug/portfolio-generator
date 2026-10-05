@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const db = require('./db');
 
-// ===== Change this number to change the photo size limit everywhere =====
+
 const MAX_MB = 5;
 
 const app = express();
@@ -79,7 +79,7 @@ async function getPortfolio(id) {
 // HOME
 app.get('/', (req, res) => res.render('home'));
 
-// HEALTH CHECK (used by UptimeRobot to keep the site awake)
+
 app.get('/health', (req, res) => res.send('ok'));
 
 // CREATE (form)
@@ -141,12 +141,12 @@ app.post('/portfolio/:id/update', upload.single('photo'), wrap(async (req, res) 
   let setSql = 'full_name=?, email=?, phone=?, address=?, about=?';
   const vals = [b.full_name, b.email, b.phone, b.address, b.about];
 
-  if (newPhoto) {               // a new photo replaces the old one
+  if (newPhoto) {               
     setSql += ', photo=?';
     vals.push(newPhoto);
-  } else if (removePhoto) {     // user clicked "Remove photo"
+  } else if (removePhoto) {     
     setSql += ', photo=NULL';
-  }                             // otherwise the current photo is kept
+  }                             
 
   await tx(async conn => {
     await conn.query(`UPDATE portfolios SET ${setSql} WHERE id=?`, [...vals, req.params.id]);
@@ -170,7 +170,7 @@ app.use((err, req, res, next) => {
   res.status(500).send(`${msg} <a href="javascript:history.back()">Go back</a>`);
 });
 
-// Don't let one unexpected error take the whole server down
+
 process.on('unhandledRejection', err => console.error('Unhandled rejection:', err));
 process.on('uncaughtException', err => console.error('Uncaught exception:', err));
 

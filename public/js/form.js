@@ -12,7 +12,7 @@ function removeRow(btn) {
   else row.querySelectorAll('input, textarea').forEach(i => (i.value = ''));
 }
 
-// ---------- Profile photo: size limit, preview, shrink, remove ----------
+
 (function () {
   const input = document.getElementById('photo');
   if (!input) return;
@@ -36,7 +36,7 @@ function removeRow(btn) {
     removeBtn.style.display = 'none';
   }
 
-  // Shrink the image in the browser so the saved photo stays small and fast
+  
   function shrink(file) {
     return new Promise(resolve => {
       const img = new Image();
@@ -84,7 +84,7 @@ function removeRow(btn) {
         dt.items.add(new File([blob], 'photo.jpg', { type: 'image/jpeg' }));
         input.files = dt.files;
         shown = blob;
-      } catch (err) { /* keep the original file if the browser blocks this */ }
+      } catch (err) {  }
     }
     showPreview(URL.createObjectURL(shown));
   });
