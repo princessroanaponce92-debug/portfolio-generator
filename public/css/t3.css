@@ -1,21 +1,21 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',Arial,sans-serif;background:#fdfbff;color:#2b1b4a}
 .layout{display:grid;grid-template-columns:320px 1fr;min-height:100vh}
-aside{background:#2e1065;color:#fff;padding:40px 26px;position:sticky;top:0;height:100vh;overflow-y:auto}
-aside img{width:150px;height:150px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 16px;border:5px solid #c084fc}
+aside{background:linear-gradient(rgba(30,10,70,.78),rgba(18,6,46,.9)),url('/images/galaxy-bg.jpg') center top/cover no-repeat;color:#fff;padding:40px 26px;position:sticky;top:0;height:100vh;overflow-y:auto}
+aside img{width:150px;height:150px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 16px;border:5px solid #c084fc;box-shadow:0 0 30px rgba(192,132,252,.6)}
 aside h1{font-family:'Playfair Display',serif;text-align:center;font-size:1.7rem}
-.contact{margin:16px 0;font-size:.88rem;opacity:.9}
+.contact{margin:16px 0;font-size:.88rem;opacity:.92}
 .contact p{margin-bottom:6px;word-break:break-word}
-aside h3{margin:22px 0 8px;color:#c084fc;text-transform:uppercase;letter-spacing:2px;font-size:.8rem}
+aside h3{margin:22px 0 8px;color:#d8b4fe;text-transform:uppercase;letter-spacing:2px;font-size:.8rem}
 aside ul{list-style:none}
-aside li{display:inline-block;background:#4c1d95;padding:4px 12px;border-radius:6px;margin:3px;font-size:.82rem}
+aside li{display:inline-block;background:rgba(124,58,237,.55);padding:4px 12px;border-radius:6px;margin:3px;font-size:.82rem}
 aside a{display:block;color:#e9d5ff;text-decoration:none;margin-bottom:6px}
 .content{padding:50px 46px 100px}
 .quote{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.6;color:#4c1d95;border-left:6px solid #a855f7;padding-left:20px;margin-bottom:30px}
 .content h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin:30px 0 14px;color:#6d28d9}
 .timeline{border-left:3px dashed #c084fc;padding-left:22px}
 .t-item{position:relative;margin-bottom:20px}
-.t-item::before{content:'';position:absolute;left:-30px;top:6px;width:14px;height:14px;background:#a855f7;border-radius:50%}
+.t-item::before{content:'';position:absolute;left:-30px;top:6px;width:14px;height:14px;background:#a855f7;border-radius:50%;box-shadow:0 0 12px rgba(168,85,247,.7)}
 .t-item b{color:#a855f7;font-size:.82rem}
 .t-item p{color:#6b6280}
 .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}

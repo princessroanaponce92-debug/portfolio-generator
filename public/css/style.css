@@ -83,3 +83,9 @@ tbody tr:hover{background:rgba(168,85,247,.12)}
   .nav a{margin-left:12px}
   .card-box{padding:20px}
 }
+
+.btn,.btn:hover,.btn-outline,.btn-outline:hover,.btn-danger,.btn-danger:hover{box-shadow:none;transform:none}
+.btn:hover{filter:brightness(1.12)}
+.step:hover,.tcard:hover,.tcard.active{transform:none;box-shadow:none}
+.step span,.thumb{box-shadow:none}
+h1{text-shadow:none}
