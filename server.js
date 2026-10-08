@@ -23,7 +23,7 @@ const wrap = fn => (req, res, next) => fn(req, res, next).catch(next);
 const arr = v => (v === undefined ? [] : Array.isArray(v) ? v : [v]);
 const toDataUrl = f => (f ? `data:${f.mimetype};base64,${f.buffer.toString('base64')}` : null);
 
-// [table, columns, form field names]
+
 const CHILDREN = [
   ['education', ['school', 'degree', 'years'], ['edu_school', 'edu_degree', 'edu_years']],
   ['projects', ['title', 'description', 'link'], ['proj_title', 'proj_desc', 'proj_link']],
