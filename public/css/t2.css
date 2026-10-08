@@ -1,10 +1,10 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',Arial,sans-serif;background:#f5f0ff;color:#1f1537;padding-bottom:90px}
-.hero{background:linear-gradient(135deg,#4c1d95,#7c3aed,#c084fc);color:#fff;text-align:center;padding:60px 20px 80px;border-radius:0 0 40px 40px}
-.hero img{width:140px;height:140px;border-radius:24px;object-fit:cover;border:5px solid rgba(255,255,255,.5);margin-bottom:14px}
+.hero{background:linear-gradient(135deg,rgba(46,16,101,.82),rgba(124,58,237,.55)),url('/images/galaxy-bg.jpg') center/cover no-repeat;color:#fff;text-align:center;padding:60px 20px 80px;border-radius:0 0 40px 40px}
+.hero img{width:140px;height:140px;border-radius:24px;object-fit:cover;border:5px solid rgba(255,255,255,.5);margin-bottom:14px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .hero h1{font-size:2.5rem}
-.hero p{max-width:620px;margin:10px auto 18px;opacity:.92}
-.chips span{display:inline-block;background:rgba(255,255,255,.2);padding:5px 14px;border-radius:999px;margin:4px;font-size:.88rem}
+.hero p{max-width:620px;margin:10px auto 18px;opacity:.95}
+.chips span{display:inline-block;background:rgba(255,255,255,.18); -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:5px 14px;border-radius:999px;margin:4px;font-size:.88rem}
 .grid{max-width:1000px;margin:-40px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .full{grid-column:1/-1}
 .card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(109,40,217,.15)}
